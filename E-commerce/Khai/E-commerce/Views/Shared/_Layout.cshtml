@@ -1,0 +1,221 @@
+﻿@inject E_commerce.Services.LayoutService service;
+
+@{
+	AppUser user = await service.GetUser();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Meta Tags -->
+	<meta charset="UTF-8">
+	<meta name="author" content="Kamran Mubarik">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Title -->
+	<title>E-Commerce Online Shop</title>
+	<!-- Style Sheet -->
+	<link rel="stylesheet" type="text/css" href="~/assets/css/style.css" />
+	<!-- Javascript -->
+	<script type="text/javascript" src="~/assets/js/jquery.min.js"></script>
+	<style>
+		.button {
+			border: none;
+			color: black;
+			padding: 5px 52px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+
+		.button2 {
+			width: 100%;
+			background-color: #eee689; /* Green */
+		}
+
+
+		.button1 {
+			width: 100%;
+			background-color: darkgreen; /* Green */
+		}
+
+		.button3 {
+			width: 100%;
+			background-color: darkred; /* Green */
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.slider').bxSlider({
+				auto: true,
+				autoControls: true,
+				stopAutoOnClick: true,
+				pager: true
+			});
+		});
+	</script>
+	<script>
+		$(function () {
+			$("#slider-range").slider({
+				range: true,
+				min: 0,
+				max: 10000,
+				values: [1000, 3000],
+				slide: function (event, ui) {
+					$("#amount").val("Rs." + ui.values[0] + " - Rs." + ui.values[1]);
+				}
+			});
+			$("#amount").val("Rs." + $("#slider-range").slider("values", 0) +
+				" - Rs." + $("#slider-range").slider("values", 1));
+		});
+	</script>
+</head>
+<body>
+
+	<header>
+		<div class="container">
+			<div class="brand">
+				<div class="logo">
+					<a asp-action="index" asp-controller="home">
+						<img src="~/assets/img/icons/online_shopping.png">
+						<div class="logo-text">
+							<p class="big-logo">Ecommerce</p>
+							<p class="small-logo">online shop</p>
+						</div>
+					</a>
+				</div> <!-- logo -->
+				<div class="shop-icon">
+					<div class="dropdown">
+						<img src="~/assets/img/icons/account.png">
+						<div class="dropdown-menu">
+							
+							@if (User.Identity.IsAuthenticated)
+							{
+								@if (User.IsInRole("Admin"))
+								{
+									<li><a style="color:black" asp-action="index" asp-controller="dashboard" asp-area="manage">Dashboard</a></li>
+								}
+								@*<li><a style="color:#6dde35" asp-action="MyOrders" asp-controller="account">My Orders</a></li>*@
+								<li><a style="color:red" asp-action="logout" asp-controller="account">Logout</a></li>
+							}
+							else
+							{
+							<ul>
+									<li><a asp-action="login" asp-controller="account">Login</a></li>
+									<li><a asp-action="register" asp-controller="account">Register</a></li>
+								
+							</ul>
+								
+							}
+						</div>
+					</div>
+					@if (User.Identity.IsAuthenticated)
+					{
+					<div  class="dropdown">
+                            <a asp-action="checkout" asp-controller="product"><img src="~/assets/img/icons/shopping_cart.png"></a>
+                    </div>					
+					}
+				</div> <!-- shop icons -->
+			</div> <!-- brand -->
+
+			<div class="menu-bar">
+				<div class="menu">
+					<ul>
+						<li><a asp-action="index" asp-controller="home">Home</a></li>
+						<li><a asp-action="index" asp-controller="shop">Shop</a></li>
+						<li><a asp-action="about" asp-controller="home">About</a></li>
+						
+					</ul>
+				</div>
+				
+			</div> <!-- menu -->
+		</div> <!-- container -->
+	</header> <!-- header -->
+
+	@RenderBody()
+
+	<footer>
+		<div class="container">
+			<div class="footer-widget">
+				<div class="widget">
+					<div class="widget-heading">
+						<h3>Important Link</h3>
+					</div>
+					<div class="widget-content">
+						<ul>
+							<li><a asp-action="about" asp-controller="home">About</a></li>
+							
+							<li><a asp-action="refund" asp-controller="home">Refund Policy</a></li>
+							<li><a asp-action="terms" asp-controller="home">Terms & Conditions</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="widget">
+					<div class="widget-heading">
+						<h3>Information</h3>
+					</div>
+					<div class="widget-content">
+						<ul>
+							@*@if (User.Identity.IsAuthenticated)
+							{
+								<li><a asp-action="myaccount" asp-controller="account">My Account</a></li>
+							}
+							else
+							{
+							<li><a asp-action="login" asp-controller="account">My Account</a></li>				
+							}
+							<li><a href="orders.html">My Orders</a></li>
+							<li><a href="cart.html">Cart</a></li>*@
+							<li><a asp-action="checkout" asp-controller="product">Checkout</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="widget">
+					<div class="widget-heading">
+						<h3>Follow us</h3>
+					</div>
+					<div class="widget-content">
+						<div class="follow">
+							<ul>
+								<li><a href="https://www.facebook.com/elonreevesmusk/?locale=ru_RU"><img src="~/assets/img/icons/facebook.png"></a></li>
+								<li><a href="https://twitter.com/elonmusk?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><img src="~/assets/img/icons/twitter.png"></a></li>
+								<li><a href="https://www.instagram.com/elonmusk/"><img src="~/assets/img/icons/instagram.png"></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="widget-heading">
+						<h3>Subscribe for Newsletter</h3>
+					</div>
+					<div class="widget-content">
+						<div class="subscribe">
+							<form>
+								<div class="form-group">
+									<input type="text" class="form-control" name="subscribe" placeholder="Email">
+									<img src="~/assets/img/icons/paper_plane.png">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div> <!-- Footer Widget -->
+			<div class="footer-bar">
+				<div class="copyright-text">
+					<p>Copyright 2021 - All Rights Reserved</p>
+				</div>
+				<div class="payment-mode">
+					<img src="~/assets/img/icons/paper_money.png">
+					<img src="~/assets/img/icons/visa.png">
+					<img src="~/assets/img/icons/mastercard.png">
+				</div>
+			</div> <!-- Footer Bar -->
+		</div>
+	</footer> <!-- Footer Area -->
+
+</body>
+
+</html>

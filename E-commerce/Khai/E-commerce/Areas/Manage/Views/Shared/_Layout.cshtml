@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Meta Tags -->
+	<meta charset="UTF-8">
+	<meta name="author" content="Kamran Mubarik">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Title -->
+	<title>Create an E-Commerce Website using HTML, CSS and JS</title>
+	<!-- Style Sheet -->
+	<link rel="stylesheet" type="text/css" href="~/manage/css/style.css" />
+	<style>
+		.button {
+			border: none;
+			color: black;
+			padding: 5px 52px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+
+		.button2 {
+			width: 100%;
+			background-color: #eee689; /* Green */
+
+		}
+		
+
+		.button1 {
+			width: 100%;
+			background-color: darkgreen; /* Green */
+
+		}
+
+		.button3 {
+			width: 100%;
+			background-color: darkred; /* Green */
+		}
+		
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.3/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+</head>
+<body>
+
+	<header>
+		<div class="container">
+			<div class="brand">
+				<div class="logo">
+					<a asp-action="index" asp-controller="home" asp-area="home">
+						<img src="~/manage/img/icons/online_shopping.png">
+						<div class="logo-text">
+							<p class="big-logo">Ecommerce</p>
+							<p class="small-logo">online shop</p>
+						</div>
+					</a>
+				</div> <!-- logo -->
+				<div class="shop-icon">
+					<div class="dropdown">
+						<img src="~/manage/img/icons/account.png">
+						<div class="dropdown-menu">
+							@if (User.Identity.IsAuthenticated)
+							{
+								<ul>
+									@*<li><a href="#">My Account</a></li>
+									<li><a href="#">Settings</a></li>*@
+									<li><a asp-action="logout" asp-controller="adminaccount">Logout</a></li>
+								</ul>
+							}
+							else
+							{
+								@*<ul>
+
+									<li><a asp-action="login" asp-controller="adminaccount">Login</a></li>
+									<li><a asp-action="register" asp-controller="adminaccount">Register</a></li>
+								</ul>*@
+							}
+						</div>
+					</div>
+				</div> <!-- shop icons -->
+			</div> <!-- brand -->
+		</div> <!-- container -->
+	</header> <!-- header -->
+
+	<main>
+
+		<div class="main-content">
+			<div class="sidebar">
+				<h3>Menu</h3>
+				<ul>
+					<li><a asp-action="index" asp-controller="dashboard">Home</a></li>
+					<li><a asp-action="index" asp-controller="slider">Slider</a></li>
+					<li><a asp-action="index" asp-controller="Сharacteristics">Product Characteristics</a></li>
+					<li><a asp-action="index" asp-controller="country">Country</a></li>
+					<li><a asp-action="index" asp-controller="product">Product</a></li>
+					<li><a asp-action="index" asp-controller="mainpage">Main Page</a></li>
+					
+					<li><a asp-action="register" asp-controller="adminaccount">Add Admin</a></li>
+				</ul>
+			</div>
+	        @RenderBody()
+			
+		</div>
+
+	</main> <!-- Main Area -->
+
+
+
+	<footer>
+		<div class="container">
+			<div class="footer-bar">
+				<div class="copyright-text">
+					<p>Copryright 2023 - All Rights Reserved</p>
+				</div>
+			</div> <!-- Footer Bar -->
+		</div>
+	</footer> <!-- Footer Area -->
+	<script src="~/assets/js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.3/sweetalert2.min.js" integrity="sha512-eN8dd/MGUx/RgM4HS5vCfebsBxvQB2yI0OS5rfmqfTo8NIseU+FenpNoa64REdgFftTY4tm0w8VMj5oJ8t+ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>

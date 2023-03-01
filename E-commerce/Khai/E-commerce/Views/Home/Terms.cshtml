@@ -1,0 +1,14 @@
+﻿@model List<TermsPage>
+<div class="container">
+	<main>
+		<div class="about">
+			<h2 class="heading">About</h2>
+			<p>
+				@foreach (TermsPage item in Model)
+				{
+					<td>@item.Description</td>
+				}
+			</p>
+		</div>
+	</main> <!-- Main Area -->
+</div>

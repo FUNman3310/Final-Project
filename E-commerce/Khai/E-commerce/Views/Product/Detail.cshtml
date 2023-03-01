@@ -1,0 +1,101 @@
+﻿@model ProductDetailViewModel
+
+
+
+	<div class="container">
+		<main>
+			<div class="breadcrumb">
+				<ul>
+					<li><a asp-action="index" asp-controller="home">Home</a></li>
+					<li> / </li>
+					<li><a asp-action="index" asp-controller="shop">Shop</a></li>
+					<li> / </li>
+					<li>Product</li>
+				</ul>
+			</div> <!-- End of Breadcrumb-->
+
+			<div class="single-product">
+				<div class="images-section">
+					<div class="larg-img">
+					<img src="~/uploads/product/@Model.product.Images.FirstOrDefault(x=>x.IsPoster==true).Image">
+					</div>
+					<div class="small-img">
+						
+						@foreach (var item in Model.product.Images.Where(x=>x.IsPoster==false))
+					{
+						<a class="fancybox" rel="group" href="~/uploads/product/@item.Image">
+							<img src="~/uploads/product/@item.Image">
+						</a>
+					}
+					</div>
+				</div> <!-- End of Images Section-->
+
+				<div class="product-detail">
+					<div class="product-name">
+						<h2>@Model.product.Name</h2>
+					</div>
+					<div class="product-price">
+					<h3>
+						@if (Model.product.Discount > 0)
+						{
+							<span style="color:#6dde35" class="price">$@((Model.product.SalePrice - (Model.product.SalePrice * Model.product.Discount) / 100).ToString("0.00")) /</span>
+							<del style="color:#40821f" class="price-old">@(Model.product.SalePrice) </del>
+							<span style="color:red" class="price-discount">/ @(Model.product.Discount)%</span>
+						}
+						else
+						{
+							<span style="color:#6dde35" class="price">£@(Model.product.SalePrice.ToString("0.00"))</span>
+						}
+					</h3>
+					</div>
+					<hr>
+					<div class="product-description">
+					<p>@Model.product.ShortDescription</p>
+					</div>
+					<hr>
+					<div class="product-cart">
+						<form id="cart-form">
+							<div class="form-group">
+
+							<a style="max-width:40%" asp-action="addtobasket" asp-controller="product" asp-route-productId="@Model.product.Id" class="button button2">Add to Basket</a>
+							</div>
+						</form>
+						
+						
+					</div>
+					<hr>
+					<div class="product-meta">
+					
+					<p><b>Availability: </b><span style="color:@(Model.product.IsAvailable ? "Green" : "Red")">@(Model.product.IsAvailable ? "In Stock" : "Out of Stock")</span></p>
+                    <p><b>Code: </b> @Model.product.Code</p>
+					<p><b>Category: </b> <a style="color:#40821f" asp-action="filter" asp-controller="shop" asp-route-index="@IndexerEnum.Category" asp-route-id="@Model.product.CategoryId">@Model.product.Category.Name</a></p>
+					<p><b>Type: </b> <a style="color:#2fbb15" asp-action="filter" asp-controller="shop" asp-route-index="@IndexerEnum.Type" asp-route-id="@Model.product.ProductTypeId">@Model.product.ProductType.Name</a></p>
+					<p><b>Color: </b> <a style="color:lightcoral" asp-action="filter" asp-controller="shop" asp-route-index="@IndexerEnum.Color" asp-route-id="@Model.product.ColorId">@Model.product.Color.Name</a></p>
+					<p><b>Material: </b> <a style="color:gray" asp-action="filter" asp-controller="shop" asp-route-index="@IndexerEnum.Material" asp-route-id="@Model.product.MaterialId">@Model.product.Material.Name</a></p>
+					</div>
+				</div> <!-- End of Product Detail-->
+			</div>
+			<hr>
+			<div class="product-long-description">
+				<h3>Product Description</h3>
+				<p>
+				@Model.product.Description
+				</p>
+				
+			</div>
+			<hr>
+			<div class="new-product-section">
+				<div class="product-section-heading">
+					<h2>Recommend Products <img src="~/assets/img/icons/good_quality.png"></h2>
+					<h3>OUR BEST PRODUCTS RECOMMENDED FOR YOU</h3>
+				</div>
+				<div class="product-content">
+
+				@await Html.PartialAsync("_ProductSliderPartial",Model.RelatedProducts)
+
+					
+				</div>
+			</div> <!-- Recommend Product Section -->
+		</main> <!-- Main Area -->
+	</div>
+

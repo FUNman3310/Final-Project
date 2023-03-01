@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Meta Tags -->
+	<meta charset="UTF-8">
+	<meta name="author" content="Kamran Mubarik">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Title -->
+	<title>E-Commerce Online Shop</title>
+	<!-- Style Sheet -->
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<!-- Javascript -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+
+			$('.prev').on("click", function () {
+
+				var prev = $(this).closest('.qty').find("input").val();
+
+				if (prev == 1) {
+					$(this).closest('.qty').find("input").val('1');
+				} else {
+					var prevVal = prev - 1;
+					$(this).closest('.qty').find("input").val(prevVal);
+				}
+			});
+			$('.next').on("click", function () {
+
+				var next = $(this).closest('.qty').find("input").val();
+
+				if (next == 10) {
+					$(this).closest('.qty').find("input").val('10');
+				} else {
+					var nextVal = ++next;
+					$(this).closest('.qty').find("input").val(nextVal);
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+
+	
+
+	<div class="container">
+		<main>
+			<div class="breadcrumb">
+				<ul>
+					<li><a asp-action="index" asp-controller="home">Home</a></li>
+					<li> / </li>
+					<li><a asp-action="index" asp-controller="shop">Shop</a></li>
+					<li> / </li>
+					<li>Cart</li>
+				</ul>
+			</div> <!-- End of Breadcrumb-->
+
+			<h2>Shopping Cart</h2>
+			<div class="cart-page">
+				<div class="cart-items">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="3">Cart Items</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width: 20%;"><img src="img/product/img1.jpg"></td>
+								<td style="width: 60%;">
+									<h2>Product Title</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									<br>
+									<h3>Price: Rs.1200</h3>
+									<br>
+									<a href="">x</a> Remove
+								</td>
+								<td class="qty" style="width: 15%;">
+									<div class="prev">-</div>
+									<div class="next">+</div>
+									<input type="number" name="cartNumber" class="cartNumber" value="1" min="1" max="10">
+									<br><br>
+									<h3>Rs.1200</h3>
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 20%;"><img src="img/product/img2.jpg"></td>
+								<td style="width: 60%;">
+									<h2>Product Title</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									<br>
+									<h3>Price: Rs.1200</h3>
+									<br>
+									<a href="">x</a> Remove
+								</td>
+								<td class="qty" style="width: 15%;">
+									<div class="prev">-</div>
+									<div class="next">+</div>
+									<input type="number" name="cartNumber" class="cartNumber" value="1" min="1" max="10">
+									<br><br>
+									<h3>Rs.1200</h3>
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 20%;"><img src="img/product/img3.jpg"></td>
+								<td style="width: 60%;">
+									<h2>Product Title</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									<br>
+									<h3>Price: Rs.1200</h3>
+									<br>
+									<a href="">x</a> Remove
+								</td>
+								<td class="qty" style="width: 15%;">
+									<div class="prev">-</div>
+									<div class="next">+</div>
+									<input type="number" name="cartNumber" class="cartNumber" value="1" min="1" max="10">
+									<br><br>
+									<h3>Rs.1200</h3>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="pagination">
+						<ul>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="cart-summary">
+					<div class="checkout-total">
+						<h3>Cart Summary</h3>
+						<ul>
+							<li>Number of Products x 15</li>
+							<li>Number of items x 20</li>
+							<hr>
+							<li>Cart Total <span style="float: right;">Rs.1200</span></li>
+							<li><a href="checkout.html">Go to Checkout</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</main> <!-- Main Area -->
+	</div>
+
+	
+
+</body>
+
+</html>

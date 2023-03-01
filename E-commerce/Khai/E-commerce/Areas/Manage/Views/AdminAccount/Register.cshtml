@@ -1,0 +1,68 @@
+﻿@model AdminRegisterViewModel
+
+
+
+
+
+	<div class="container">
+		<main>
+
+			<div class="main-content">
+
+				<div  style="margin: auto">
+					<h3 style="text-align:center">Add Admin</h3>
+					<div class="content-data">
+						<div class="content-form" style="margin: auto">
+							<form method="post">
+
+								<div class="form-inline">
+									<div class="form-group">
+										<label asp-for="Fullname">Fullname</label>
+										<input asp-for="Fullname"  class="form-control form-control-user" 
+                                            placeholder="Fullname">
+                                        <span asp-validation-for="Fullname" class="text-danger"></span>
+									</div>
+									<div class="form-group">
+										<label asp-for="Username">Username</label>
+										<input asp-for="Username" class="form-control form-control-user"
+											   placeholder="Username">
+										<span asp-validation-for="Username" class="text-danger"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label asp-for="Email">Email</label>
+									<input asp-for="Email" class="form-control form-control-user"
+										   placeholder="Email">
+									<span asp-validation-for="Email" class="text-danger"></span>
+								</div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label asp-for="Password">Password</label>
+										<input asp-for="Password" class="form-control form-control-user"
+                                           placeholder="Password">
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+									</div>
+									<div class="form-group">
+										<label asp-for="ConfirmPassword">Confirm Password</label>
+										<input asp-for="ConfirmPassword" class="form-control form-control-user"
+											   placeholder="Repeat Password">
+										<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+									</div>
+								</div>
+								<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+								<div class="form-group">
+
+									<button type="submit" class="button button2">Register</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</main> <!-- Main Area -->
+	</div>
+
+
+

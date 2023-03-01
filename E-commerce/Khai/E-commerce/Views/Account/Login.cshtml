@@ -1,0 +1,150 @@
+﻿@model MemberLoginViewModel
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Meta Tags -->
+	<meta charset="UTF-8">
+	<meta name="author" content="Kamran Mubarik">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Title -->
+	<title>E-Commerce Online Shop</title>
+	<!-- Style Sheet -->
+	<link rel="stylesheet" type="text/css" href="~/manage/css/style.css" />
+
+	<style>
+		.button {
+			border: none;
+			color: black;
+			padding: 5px 52px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+
+		.button2 {
+			width: 100%;
+			background-color: #eee689; /* Green */
+		}
+
+
+		.button1 {
+			width: 100%;
+			background-color: darkgreen; /* Green */
+		}
+
+		.button3 {
+			width: 100%;
+			background-color: darkred; /* Green */
+		}
+	</style>
+	<!-- Javascript -->
+	<script type="text/javascript" src="~/assets/js/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.slider').bxSlider({
+				auto: true,
+				autoControls: true,
+				stopAutoOnClick: true,
+				pager: true
+			});
+		});
+	</script>
+</head>
+<body>
+
+	<header>
+		<div class="container">
+
+			<div class="brand">
+				<div class="logo">
+					<a asp-action="index" asp-controller="home">
+						<img src="~/manage/img/icons/online_shopping.png">
+						<div class="logo-text">
+							<p class="big-logo">Ecommerce</p>
+							<p class="small-logo">online shop</p>
+						</div>
+					</a>
+				</div> <!-- logo -->
+				
+			</div> <!-- brand -->
+
+
+		</div> <!-- container -->
+	</header> <!-- header -->
+
+
+
+	<div class="container">
+		<main>
+
+			<div class="main-content">
+
+				<div class="content" style="margin: auto">
+					<h3 style="text-align:center">Access</h3>
+					<div class="content-data">
+						<div class="content-form" style="margin: auto">
+							<form method="post">
+
+
+								<div class="form-group">
+									<label asp-for="Username">Username</label>
+									<input asp-for="Username" class="form-control form-control-user"
+										   placeholder="Username">
+									<span asp-validation-for="Username" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label asp-for="Password">Password</label>
+									<input asp-for="Password" class="form-control form-control-user"
+										   placeholder="Password">
+									<span asp-validation-for="Password" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+
+									<button type="submit" class="button button2">Login</button>
+								</div>
+							</form>
+							<div  class="text-center">
+								<a style="color:green;padding-left:170px" class="small" asp-action="register" asp-controller="account">Create an Account!</a>
+							</div>
+							<br />
+								@*<div class="text-center">
+									<a style="color:black;padding-left:173px" class="small" asp-action="forgotpassword" asp-controller="account">Forgot Password?</a>
+								</div>*@
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</main> <!-- Main Area -->
+	</div>
+
+
+
+
+	<footer>
+		<div class="container">
+
+			<div class="footer-bar">
+				<div class="copyright-text">
+					<p>Copyright 2023 - All Rights Reserved</p>
+				</div>
+
+			</div> <!-- Footer Bar -->
+		</div>
+	</footer> <!-- Footer Area -->
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+﻿@model Slider
+
+<div class="content">
+	<h3>Slider</h3>
+	<div class="content-data">
+		<div class="content-form">
+			<form method="post" enctype="multipart/form-data">
+
+				<div class="form-inline">
+					<div class="form-group">
+						<label asp-for="Title" class="form-label">Title</label>
+						<input class="form-control" asp-for="Title" placeholder="Title">
+						<span asp-validation-for="Title" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="SubTitle" class="form-label">SubTitle</label>
+						<input class="form-control" asp-for="SubTitle" placeholder="SubTitle">
+						<span asp-validation-for="SubTitle" class="text-danger"></span>
+					</div>
+				</div>
+				
+
+				<div class="form-inline">
+					
+					<div class="form-group">
+						<label asp-for="ImageFile" class="form-label">ImageFile</label>
+						<input class="form-control" asp-for="ImageFile" placeholder="Image">
+						<span asp-validation-for="ImageFile" class="text-danger"></span>
+					</div>
+				</div>
+				<div style="display:flex; justify-content:center; align-items:center">
+					<button type="submit" class="button button2">Update</button>
+
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>

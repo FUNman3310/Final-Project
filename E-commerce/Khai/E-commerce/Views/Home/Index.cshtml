@@ -1,0 +1,61 @@
+﻿@model HomeViewModel
+
+<div class="container">
+	<main>
+		<div class="slider">
+
+
+			@foreach (Slider slider in Model.sliders)
+			{
+				<div class="slide-1">
+					<img src="~/uploads/slider/@slider.Image">
+					<div class="slider-text">
+						<h3>@slider.SubTitle</h3>
+						<h2>@slider.Title</h2>
+							
+						
+					</div>
+				</div>
+			}
+			
+		</div> <!-- slider -->
+
+		<div class="new-product-section">
+			<div class="product-section-heading">
+				<h2>Tranding Products <img src="~/assets/img/icons/increase.png"></h2>
+				<h3>Most selling product for the month</h3>
+				
+			</div>
+			<div class="product-content">
+				
+
+				@await Html.PartialAsync("_ProductSliderPartial",Model.IsTranding)
+
+
+				
+			</div>
+		</div> <!-- New Product Section -->
+
+		<div class="collection">
+			<div class="men-collection">
+				<h2>Men's Collection</h2>
+			</div>
+			<div class="women-collection">
+				<h2>Women's Collection</h2>
+			</div>
+		</div> <!-- Collection Section -->
+
+		<div class="new-product-section">
+			<div class="product-section-heading">
+				<h2>Recommend Products <img src="~/assets/img/icons/good_quality.png"></h2>
+				<h3>OUR BEST PRODUCTS RECOMMENDED FOR YOU</h3>
+			</div>
+			<div class="product-content">
+
+				@await Html.PartialAsync("_ProductSliderPartial",Model.IsRecommend)
+
+				
+			</div>
+		</div> <!-- Recommend Product Section -->
+	</main> <!-- Main Area -->
+</div>

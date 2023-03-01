@@ -1,0 +1,31 @@
+﻿@model List<Product>
+
+
+
+ @foreach (Product product in Model)
+{
+
+
+	<div class="product">
+		<a asp-action="detail" asp-controller="product" asp-route-id="@product.Id">
+			<img src="~/uploads/product/@product.Images.FirstOrDefault(x=>x.IsPoster==true).Image">
+		</a>
+		<div class="product-detail">
+			<h3><a style="border-radius:0px;border:0px;padding:0px;color:#d43302;float:none" asp-action="filter" asp-controller="shop" asp-route-index="@IndexerEnum.Type" asp-route-id="@product.ProductTypeId">@product.ProductType.Name</a> / <a style="border-radius:0px;border:0px;padding:0px;color:#d43302;float:none"   asp-action="filter" asp-controller="shop" asp-route-index="@IndexerEnum.Category" asp-route-id="@product.CategoryId">@product.Category.Name</a></h3>
+			<h2>@product.Name</h2>
+			<a class="add-to-dasket-btn" asp-action="addtobasket" asp-controller="product" asp-route-productId="@product.Id">Add to Cart</a>
+			<p>@if (product.Discount > 0)
+				{
+					<span style="color:#6dde35" class="price">$@((product.SalePrice - (product.SalePrice * product.Discount) / 100).ToString("0.00")) /</span>
+					<del style="color:#40821f" class="price-old">@(product.SalePrice)</del>
+								@*	<span class="price-discount">@(product.Discount)%</span>*@
+				}
+				else
+				{
+					<span style="color:#6dde35" class="price">$@(product.SalePrice.ToString("0.00"))</span>
+			    }
+			</p>
+		</div>
+	</div>
+
+}

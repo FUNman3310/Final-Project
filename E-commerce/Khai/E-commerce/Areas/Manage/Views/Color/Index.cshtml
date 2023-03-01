@@ -1,0 +1,66 @@
+﻿ @using E_commerce.Helper;
+@model PaginatedList<Color>
+
+<div class="content">
+	<h3>Color</h3>
+	<div class="content-data">
+
+		<div class="content-detail">
+			<a asp-action="create" asp-controller="color" class="button button2">Create</a>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+
+
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (Color item in Model)
+					{
+								<tr>
+									<td>@item.Name</td>
+
+
+							<td><a asp-action="update" asp-controller="color" asp-route-id="@item.Id" class="button button1">Update</a></td>
+							<td><a asp-action="delete" asp-controller="color" asp-route-id="@item.Id" class="button button3 item-delete">Delete</a></td>
+
+								</tr>
+					}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div>
+		<form method="get">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+
+					@if (Model.HasPrevious)
+					{
+						<a style="color:darkorange" class="page-link" asp-action="index" asp-controller="color" asp-route-page="@(Model.Page-1)" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					}
+
+					@for (int i = 1; i <= Model.TotalPage; i++)
+					{
+						<a style="color:red" class="page-link @(Model.Page==i?"active":"")" asp-action="index" asp-controller="color" asp-route-page="@i">@i</a>
+					}
+
+
+					@if (Model.HasNext)
+					{
+						<a style="color:darkorange" class="page-link" asp-action="index" asp-controller="color" asp-route-page="@(Model.Page+1)" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					}
+
+				</ul>
+			</nav>
+		</form>
+	</div>
+</div>

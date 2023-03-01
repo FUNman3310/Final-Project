@@ -1,0 +1,67 @@
+﻿@model FilterShopViewModel
+
+
+<body>
+
+	<div class="container">
+		<main>
+			<div class="breadcrumb">
+				<ul>
+					<li><a asp-action="index" asp-controller="home">Home</a></li>
+					<li> / </li>
+					
+					<li><a asp-action="index" asp-controller="shop">Shop</a></li>
+					<li> / </li>
+					<li>@Model.indexer</li>
+				</ul>
+			</div> <!-- End of Breadcrumb-->
+
+			<div class="new-product-section shop">
+				<div class="sidebar">
+					<div class="sidebar-widget">
+						<h3>Category</h3>
+						<ul>
+							@foreach (Category item in Model.Categories)
+							{
+								<li><a style="color:#40821f" asp-action="filter" asp-controller="shop" asp-route-index="@IndexerEnum.Category" asp-route-id="@item.Id">@item.Name</a></li>
+							}						
+						</ul>
+						<br />
+						<h3>Type</h3>
+						<ul>
+							@foreach (ProductType item in Model.Types)
+							{
+								<li><a style="color:#2fbb15" asp-action="filter" asp-controller="shop" asp-route-index="@IndexerEnum.Type" asp-route-id="@item.Id">@item.Name</a></li>
+							}
+						</ul>
+						<br />
+						<h3>Color</h3>
+						<ul>
+							@foreach (Color item in Model.Colors)
+							{
+								<li><a style="color:lightcoral" asp-action="filter" asp-controller="shop" asp-route-index="@IndexerEnum.Color" asp-route-id="@item.Id">@item.Name</a></li>
+							}						
+						</ul>
+						<br />
+						<h3>Material</h3>
+						<ul>
+							@foreach (Material item in Model.Materials)
+							{
+								<li><a style="color:gray" asp-action="filter" asp-controller="shop" asp-route-index="@IndexerEnum.Material" asp-route-id="@item.Id">@item.Name</a></li>
+							}
+						</ul>
+					</div>
+					
+				</div>
+				<div class="product-content">
+					@await Html.PartialAsync("_ProductSliderPartial",Model.FilterProducts)
+				</div>
+			</div> <!-- New Product Section -->
+
+		</main> <!-- Main Area -->
+	</div>
+
+
+
+</body>
+

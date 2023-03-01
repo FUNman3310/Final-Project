@@ -1,0 +1,97 @@
+﻿@model OrderViewModel
+@{
+	double totalPrice = 0;
+}
+	<div class="container">
+		<main>
+			<div class="breadcrumb">
+				<ul>
+					<li><a asp-action="index" asp-controller="home">Home</a></li>
+					<li> / </li>
+					<li><a asp-action="index" asp-controller="shop">Shop</a></li>
+					<li> / </li>
+					
+					<li>Checkout</li>
+				</ul>
+			</div> <!-- End of Breadcrumb-->
+
+			<h2>Billing Detail</h2>
+			   <form id="FormOrder" method="post" asp-action="order" asp-controller="product">
+			            <div class="checkout-page">
+			            	<div class="billing-detail">					
+			            			<h4>Shipping Detail</h4>
+			            			
+									
+						                      
+						                      	<label asp-for="Fullname" class="form-label">Fullname</label>
+						                      	<input style="resize:none;width:150px; height:20px" asp-for="Fullname" placeholder="Fullname">
+						                      	<span asp-validation-for="Fullname" class="text-danger"></span>
+						                     
+						
+						                      	<label style="padding-left:90px;padding-bottom:90px" asp-for="CountryId" class="form-label">Country</label>
+						                      	<select  class="form-select" asp-for="CountryId" asp-items="@(new SelectList(ViewBag.Country,"Id","Name"))">
+						                      	</select>
+
+
+
+
+
+
+
+					                <div style="padding-top:20px" class="form-group">
+						                <label asp-for="Address" class="form-label">Address</label>
+						                 <textarea style="resize:none;width:525px; height:100px" asp-for="Address" placeholder="Address"></textarea>
+										<span asp-validation-for="Address" class="text-danger"></span>
+			            			</div>
+			            			
+			            			<h4>Contact Detail</h4>
+			            			<div class="form-inline">
+
+						                       <label  asp-for="Email" class="form-label"></label>
+					                         	<input style="width:175px" class="form-control" asp-for="Email" placeholder="Email">
+							                   <span asp-validation-for="Email" class="text-danger"></span>
+						                
+			            				
+							                   <label style="padding-left:90px" asp-for="Mobile" class="form-label">Mobile</label>
+							                   <input class="form-control" asp-for="Mobile" placeholder="Mobile">
+							                   <span asp-validation-for="Mobile" class="text-danger"></span>
+			            				
+			            			</div>
+									<br />
+			            			<h4>Additional Information (Optional)</h4>
+			            			<div class="form-group">
+						                  <label asp-for="Note" class="form-label">Order Note</label>
+						<textarea style="resize:none;width:525px; height:100px" asp-for="Note" placeholder="Note"></textarea>
+						                  <span asp-validation-for="Note" class="text-danger"></span>
+			            			</div>					
+			            	</div>
+			            	<div class="order-summary">
+			            		<div class="checkout-total">
+			            			<h3>Order Summary</h3>
+			            			<ul>
+			            				@foreach (var item in Model.checkoutItemViews)
+							{
+								double price = (item.product.SalePrice * (1 - item.product.Discount / 100))*item.Count;
+
+
+
+								<li>@item.product.Name -- @item.Count <span>$@(price.ToString("0.00"))</span></li>
+
+
+								totalPrice += price;
+							}
+			            				
+			            				<hr>
+							<li>Total Price: <span>$@(totalPrice.ToString("0.00"))</span></li>
+			            				<hr>
+
+							<li><button form="FormOrder" class="button2" type="submit">Place Order</li>
+			            			</ul>
+			            		</div>
+			            	</div>
+			            </div>		
+			  </form> <!-- End of Checkout Form -->
+		</main> <!-- Main Area -->
+	</div>
+
+	

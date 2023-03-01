@@ -1,0 +1,26 @@
+﻿@model TermsPage
+
+
+<div class="content">
+	<h3>Terms & Conditions</h3>
+	<div class="content-data">
+		<div class="content-form">
+			<form method="post" enctype="multipart/form-data">
+
+
+				<div class="mb-3 col-md-6">
+						<label asp-for="Description" class="form-label">Description</label>
+						<textarea style="width:500px; height:100px" class="form-control" asp-for="Description" placeholder="Description"></textarea>
+						<span asp-validation-for="Description" class="text-danger"></span>
+				</div>
+
+
+				<div style="display:flex; justify-content:center; align-items:center">
+					<button type="submit" class="button button2">Update</button>
+
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>

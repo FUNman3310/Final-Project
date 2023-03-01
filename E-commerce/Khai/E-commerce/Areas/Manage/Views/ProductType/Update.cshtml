@@ -1,0 +1,26 @@
+﻿@model ProductType
+
+
+<div class="content">
+	<h3>Type</h3>
+	<div class="content-data">
+		<div class="content-form">
+			<form method="post" enctype="multipart/form-data">
+
+				
+				<div class="form-group">
+					<label asp-for="Name" class="form-label">Name</label>
+					<input class="form-control" asp-for="Name" placeholder="Name">
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+
+				
+				<div style="display:flex; justify-content:center; align-items:center">
+					<button type="submit" class="button button2">Update</button>
+
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>
